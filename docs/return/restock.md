@@ -22,6 +22,17 @@ RETURN Zone Stock 감소
 → 가용수량 판정
 ```
 
+## 적치 Location 조건
+
+양품화 도착지는 다음 조건을 모두 충족해야 한다.
+
+- 피킹로케이션(`PICK`) 또는 보관로케이션(`STRG`)
+- 기존 Stock이 없는 빈 Location
+- 피킹로케이션(`PICK`)이면 `EA` UOM
+- 같은 센터의 활성 Location
+
+같은 SKU가 이미 있는 Location이라도 현재 반품 양품화 스캔에서는 빈 Location이 아니면 선택할 수 없다.
+
 ## 정책
 
 1. 양품화 수량은 품질 판정된 양품 수량을 초과할 수 없다.
@@ -32,12 +43,16 @@ RETURN Zone Stock 감소
 6. 원반품·원출고와 새 정상 Stock 관계를 보존한다.
 7. LOT·유효기간·시리얼 값을 확인하고 유지한다.
 8. 양품화 완료 후 조건을 충족한 수량만 가용재고로 만든다.
+9. 양품화 도착지는 기존 Stock이 없는 빈 Location이어야 한다.
+10. 피킹로케이션(`PICK`)에 적치하는 반품 재고는 `EA` UOM이어야 한다.
 
 ## 예외
 
 - 양품 수량보다 큰 재입고 수량
 - 잘못된 상품·Container
 - 부적합·HOLD·비활성 Location
+- 기존 Stock이 존재하는 Location
+- 피킹로케이션(`PICK`)에 EA가 아닌 UOM 적치
 - RETURN Zone 차감과 정상 Stock 증가 불일치
 - 동일 반품 상품 중복 재입고
 - Stock은 증가했지만 Inventory·수불 누락

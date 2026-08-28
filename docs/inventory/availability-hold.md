@@ -41,6 +41,13 @@ HOLD는 Stock을 삭제하거나 수량을 감소시키지 않고 작업 대상�
 
 <div class="flow-strip"><span>상품·Location 검색</span><i>→</i><span>현재 수량 확인</span><i>→</i><span>가용 변경 또는 HOLD 선택</span><i>→</i><span>수량·사유 입력</span><i>→</i><span>저장·이력 확인</span></div>
 
+| 변경 유형 | 총수량 | 의미 |
+|---|---:|---|
+| 가용재고 정정(`CHGUSE`) | 함께 변경 | 총수량과 가용수량을 같은 값만큼 정정 |
+| HOLD 수량 정정(`CHGHLD`) | 함께 변경 | 총수량과 HOLD 수량을 같은 값만큼 정정 |
+| 재고 HOLD(`DOHOLD`) | 유지 | 가용수량을 HOLD로 이동 |
+| HOLD 해제(`UNHOLD`) | 유지 | HOLD 수량을 가용으로 복구 |
+
 ## 정책
 
 1. 가용수량은 Stock 총수량을 초과할 수 없다.
@@ -50,6 +57,7 @@ HOLD는 Stock을 삭제하거나 수량을 감소시키지 않고 작업 대상�
 5. 이미 피킹·이동 등 작업에 점유된 수량은 임의로 HOLD하지 않는다.
 6. HOLD 해제는 원래 SKU·LOT·Location으로 가용수량을 복구한다.
 7. HOLD 상태에서도 재고 조회와 수불 이력은 유지한다.
+8. 가용·HOLD 수량 정정과 가용·HOLD 사이의 상태 이동을 구분한다.
 
 ## 예외
 
