@@ -1,6 +1,6 @@
 ---
 layout: false
-title: WMS Domain Docs
+title: CGKR Docs
 titleTemplate: false
 head:
   - - meta

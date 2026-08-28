@@ -71,7 +71,7 @@ body {
 }
 
 .VPNavBarTitle .title { font-weight: 700; letter-spacing: -0.02em; }
-.VPNavBarTitle .logo { width: 28px; height: 28px; }
+.VPNavBarTitle .logo { width: 32px; height: 27px; }
 .VPNavBarMenuLink, .VPNavBarMenuGroup .text { font-size: 14px; font-weight: 600; }
 .VPNavBarMenuLink.active { color: var(--vp-c-brand-1); }
 .VPSidebar { background: var(--vp-c-bg-alt); }

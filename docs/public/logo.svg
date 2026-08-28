@@ -1,7 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
-  <title id="title">Warehouse Atlas</title>
-  <rect width="48" height="48" rx="12" fill="#29313d"/>
-  <path d="M10 18.5 24 10l14 8.5v17A2.5 2.5 0 0 1 35.5 38h-23A2.5 2.5 0 0 1 10 35.5v-17Z" fill="#fff" opacity=".98"/>
-  <path d="M16 23h7v15h-7zm9 0h7v6h-7zm0 8h7v7h-7z" fill="#29313d"/>
-  <path d="M8.5 18.5 24 9l15.5 9.5" fill="none" stroke="#3381ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<svg role="img" aria-labelledby="colosseum-logo-title" viewBox="0 0 52 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title id="colosseum-logo-title">Colosseum</title>
+  <path d="M26.2482 12.1613L21.7894 2.703C21.0076 1.02009 18.7658 0.805354 17.0041 1.12496C12.7729 2.03383 7.40855 3.44708 3.06855 5.89405C1.49487 6.77796 1 7.94151 1 9.38972V20.9904C1 20.0715 1.53941 19.2725 2.41038 18.7331C9.92249 14.3536 18.1472 12.1613 26.2482 12.1613Z" fill="#0047D9"/>
+  <path d="M1 30.6828C1 39.6817 16.821 43.467 26.1047 43.467C39.9412 43.467 50.9917 40.3708 50.9917 35.402C50.9917 30.4331 41.9504 28.3557 35.3884 27.0173C29.1481 25.7439 19.8149 27.1622 7.75991 22.1833C3.49414 20.4205 1 16.6152 1 14.0234V30.6778V30.6828Z" fill="url(#colosseum-logo-gradient)"/>
+  <path d="M50.9954 22.4084C50.9954 20.6207 50.4362 19.3023 48.5606 18.1537C41.3999 14.1886 33.9373 12.1861 26.252 12.1611L32.324 24.2561C33.1207 25.964 34.2144 26.7531 35.3971 27.0177C41.9591 28.3561 51.0004 30.4335 51.0004 35.4023V22.4084H50.9954Z" fill="#0061FF"/>
+  <defs>
+    <linearGradient id="colosseum-logo-gradient" x1="8.89316" y1="28.7452" x2="43.5884" y2="28.7452" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0061FF"/>
+      <stop offset="0.26" stop-color="#0258F5"/>
+      <stop offset="0.69" stop-color="#0A42DC"/>
+      <stop offset="1" stop-color="#1130C6"/>
+    </linearGradient>
+  </defs>
 </svg>

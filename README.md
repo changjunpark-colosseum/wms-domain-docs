@@ -1,4 +1,4 @@
-# CGKR Domain Docs
+# CGKR Docs
 
 Obsidian Vault와 실제 구현을 바탕으로 WMS 공용 개념을 설명하는 회사 내부 문서 사이트다. 현재 범위는 상품·재고·입고·출고·배송·송장·반품과 채널별 물류 흐름이다.
 

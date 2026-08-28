@@ -1,43 +1,75 @@
 ---
-title: 입고 개요
-description: 입고 신청부터 입하·검수·예외·적치와 재고 반영까지의 전체 흐름
+title: 입고
+description: 입고 주문부터 입하·검수·입고 작업·적치·예외와 완료까지의 도메인 구조
 ---
 
-# 입고 개요
+# 입고
 
-<div class="page-meta"><span>입고</span><span>전체 흐름</span><span>10분</span></div>
+<div class="page-meta"><span>입고</span><span>도메인 개요</span><span>8분</span></div>
 
-입고는 화주가 등록한 입고 예정과 실제 도착한 상품을 비교하고, 검수한 수량을 창고 Location에 적치해 재고로 반영하는 과정이다.
+입고는 창고에 들어올 상품을 주문으로 정의하고, 실제 도착한 상품을 검수해 적합한 Location에 적치한 뒤 재고로 확정하는 과정이다.
+
+## 도메인 구조
+
+```text
+입고
+├─ 입고 주문
+├─ 입하
+├─ 검수
+├─ 입고 작업
+├─ 적치
+├─ 입고 예외
+└─ 입고 완료
+```
 
 ## 전체 흐름
 
-<div class="flow-strip"><span>입고 신청</span><i>→</i><span>입하</span><i>→</i><span>검수</span><i>→</i><span>입고 예외·TS</span><i>→</i><span>적치</span><i>→</i><span>입고 완료·재고 반영</span></div>
+<div class="flow-strip"><span>입고 주문</span><i>→</i><span>입하</span><i>→</i><span>검수</span><i>→</i><span>입고 작업</span><i>→</i><span>적치</span><i>→</i><span>입고 완료</span></div>
 
-## 단계별 역할
+입고 예외는 독립된 마지막 단계가 아니다. 입하·검수·입고 작업·적치 어디에서든 발생하고, 판정이 끝나야 입고를 완료할 수 있다.
 
-| 단계 | 확인하는 내용 | 결과 |
+## 하위 도메인
+
+| 하위 도메인 | 책임 | 주요 결과 |
 |---|---|---|
-| 입고 신청 | 어떤 상품이 언제 얼마나 올 예정인가 | 입고 신청번호·작업 대상 |
-| 입하 | BOX·PALLET 등 물량이 실제 도착했는가 | 입하 수량·입하 Zone |
-| 검수 | SKU·수량·LOT·유효기간이 맞는가 | 정상 검수 수량 |
-| 예외·TS | 초과·파손·불일치를 어떻게 처리할 것인가 | 예외 수량·판정 결과 |
-| 적치 | 상품을 어느 Location에 둘 것인가 | Stock Location 확정 |
-| 완료 | 처리 수량과 예외가 모두 종결됐는가 | Inventory·Stock 증가 |
+| 입고 주문 | 무엇을 어느 센터에 얼마나 입고할지 정의 | 입고번호·예정 상품·수량 |
+| 입하 | 센터에 도착한 운송·포장 단위를 인수 | 도착 수량·입하 이력 |
+| 검수 | 실물의 상품·수량·재고 속성을 확정 | 정상 검수 수량·LOT·유효기간 |
+| 입고 작업 | WRO와 임시 취급 단위로 현장 처리를 추적 | 작업 상태·임시빈·STOW Zone |
+| 적치 | 검수된 재고를 최종 Location에 배치 | Location별 Stock |
+| 입고 예외 | 부족·초과·파손·정보 불일치를 판정 | 확정·기각·회송·HOLD 결과 |
+| 입고 완료 | 모든 수량을 종결하고 재고 사건을 확정 | Inventory·Stock·수불 이력 |
+
+## 객체 관계
+
+```text
+Inbound Order
+├─ Receiving Result
+├─ Inspection Result
+│  └─ SKU Instance
+├─ Inbound Work
+│  ├─ WRO
+│  └─ Temporary Handling Unit
+├─ Putaway Result
+└─ Inbound Exception
+```
 
 ## 공통 정책
 
-1. 신청 수량과 실제 처리 수량을 덮어쓰지 않고 따로 보존한다.
-2. 누적 수량과 남은 수량을 기준으로 중복 처리를 막는다.
-3. 정상 처리와 예외 수량을 구분한다.
-4. 작업자, 처리시각과 수량 이력을 남긴다.
-5. 모든 입하·검수·적치·예외가 끝난 뒤 입고를 완료한다.
-6. 같은 입고 완료 요청을 반복해도 재고를 두 번 증가시키지 않는다.
+1. 예정 수량과 실제 처리 수량을 구분한다.
+2. 입고 주문 원장을 현장 결과로 덮어쓰지 않는다.
+3. 상품·수량·작업자·시각과 상태 변경 이력을 보존한다.
+4. 같은 수량을 여러 작업에서 중복 처리하지 않는다.
+5. 예외 수량은 정상 수량과 분리해 판정한다.
+6. 모든 정상 수량의 적치와 예외 종결이 끝난 뒤 입고를 완료한다.
+7. 입고 완료 사건은 한 번만 Inventory·Stock에 반영한다.
 
-## 관련 문서
+## 문서
 
-- [입고 신청](/inbound/request)
+- [입고 주문](/inbound/order)
 - [입하](/inbound/receiving)
 - [검수](/inbound/inspection)
-- [입고 예외·TS](/inbound/exceptions)
+- [입고 작업](/inbound/work)
 - [적치](/inbound/putaway)
-- [입고 완료·재고 반영](/inbound/completion)
+- [입고 예외](/inbound/exceptions)
+- [입고 완료](/inbound/completion)

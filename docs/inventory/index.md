@@ -16,7 +16,8 @@ description: 상품·SKU·Location·LOT·유효기간별 현재 재고와 가용
 └─ Product
    └─ SKU
       └─ LOT·유효기간
-         └─ Location별 Stock
+         └─ LPN
+            └─ Location별 Stock
 ```
 
 같은 SKU라도 LOT·유효기간·Location이 다르면 별도 재고 행으로 조회한다.
@@ -30,6 +31,7 @@ description: 상품·SKU·Location·LOT·유효기간별 현재 재고와 가용
 - 일반상품·부자재상품
 - Center·Zone·Location
 - LOT·유효기간
+- LPN
 - 가용·HOLD 여부
 
 ## 조회 결과
@@ -41,6 +43,7 @@ description: 상품·SKU·Location·LOT·유효기간별 현재 재고와 가용
 | HOLD 수량 | 작업에서 제외된 보류 수량 |
 | Location | 실물이 놓인 현재 주소 |
 | LOT·유효기간 | 같은 SKU의 실물 그룹을 구분하는 값 |
+| LPN | 이동·적치·추적하는 재고 묶음 식별자 |
 | 입고 정보 | 재고가 생성된 입고번호·입고일 |
 
 ## 정책
@@ -61,6 +64,7 @@ description: 상품·SKU·Location·LOT·유효기간별 현재 재고와 가용
 - [Inventory](/inventory/inventory)
 - [Stock](/inventory/stock)
 - [Location](/inventory/location)
+- [LPN](/inventory/lpn)
 - [LOT·유효기간](/inventory/lot-expiration)
 - [가용재고·HOLD](/inventory/availability-hold)
 - [수불부](/inventory/ledger)

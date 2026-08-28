@@ -9,6 +9,8 @@ description: 검수 완료 상품을 임시빈·STOW Zone에서 피킹·보관 L
 
 적치는 검수 완료 수량을 임시빈과 STOW Zone을 거쳐 실제 피킹·보관 Location에 배치하는 작업이다. 적치 단계에서 검수 수량을 새로 만들거나 수정하지 않는다.
 
+입고 작업에서 수행하는 `STOW Zone 인계`는 임시빈 라벨을 `ZN-STOW-1` 같은 적치 대기 구역으로 넘기는 단계다. CGKR 화면에서는 Master Location이라고 부르지만 최종 PICK·STORAGE Location에 재고를 안착시키는 적치와 구분한다.
+
 ## 적치 흐름
 
 <div class="flow-strip"><span>임시빈 라벨 스캔</span><i>→</i><span>상품·남은 수량 확인</span><i>→</i><span>피킹·보관 Location 추천</span><i>→</i><span>도착 Location 스캔</span><i>→</i><span>수량·사진·체적 확인</span><i>→</i><span>적치 완료</span></div>
@@ -49,3 +51,8 @@ description: 검수 완료 상품을 임시빈·STOW Zone에서 피킹·보관 L
 - Location 용량 초과
 - 피킹·보관 Zone 오선택
 - 일부 수량 적치 후 작업 중단
+
+## 관련 문서
+
+- [입고 작업](/inbound/work)
+- [LPN](/inventory/lpn)

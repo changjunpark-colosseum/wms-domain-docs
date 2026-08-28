@@ -68,3 +68,9 @@ B2B 차량 출고에는 택배 송장을 발행하지 않는다. 패킹 슬립�
 - Box 중량·부피 초과
 - 분할 Box 일부 송장 누락
 - 패킹 슬립·라벨 출력 실패
+
+## 관련 문서
+
+- [패킹 슬립](/outbound/packing-slip)
+- [피킹 슬립](/outbound/picking-slip)
+- [Box·송장 연결](/shipping/box-waybill)

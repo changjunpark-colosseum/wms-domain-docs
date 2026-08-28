@@ -48,3 +48,9 @@ description: 여러 출고 주문이 요구하는 동일 SKU 총량을 피킹 �
 - 슬립 합계와 상위 작업 합계 불일치
 - 총량 피킹 후 주문별 분배 부족
 - 일부 출고 취소로 계획 수량 변경
+
+## 관련 문서
+
+- [피킹 슬립](/outbound/picking-slip)
+- [Cart·Con](/outbound/cart-con)
+- [패킹 슬립](/outbound/packing-slip)

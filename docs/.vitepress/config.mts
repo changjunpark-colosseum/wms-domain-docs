@@ -31,6 +31,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
       { text: 'Inventory', link: '/inventory/inventory' },
       { text: 'Stock', link: '/inventory/stock' },
       { text: 'Location', link: '/inventory/location' },
+      { text: 'LPN', link: '/inventory/lpn' },
       { text: 'LOT·유효기간', link: '/inventory/lot-expiration' },
       { text: '가용재고·HOLD', link: '/inventory/availability-hold' },
       { text: '이동', link: '/inventory/movement' },
@@ -44,13 +45,13 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     link: '/inbound/',
     collapsed: false,
     items: [
-      { text: '입고 개요', link: '/inbound/' },
-      { text: '입고 신청', link: '/inbound/request' },
+      { text: '입고 주문', link: '/inbound/order' },
       { text: '입하', link: '/inbound/receiving' },
       { text: '검수', link: '/inbound/inspection' },
-      { text: '입고 예외·TS', link: '/inbound/exceptions' },
+      { text: '입고 작업', link: '/inbound/work' },
       { text: '적치', link: '/inbound/putaway' },
-      { text: '입고 완료·재고 반영', link: '/inbound/completion' }
+      { text: '입고 예외', link: '/inbound/exceptions' },
+      { text: '입고 완료', link: '/inbound/completion' }
     ]
   },
   {
@@ -74,14 +75,28 @@ const sidebar: DefaultTheme.SidebarItem[] = [
             items: [
               { text: '개별 피킹', link: '/outbound/picking-individual' },
               { text: '클러스터 피킹', link: '/outbound/picking-cluster' },
-              { text: '총량 피킹', link: '/outbound/picking-total' },
+              {
+                text: '총량 피킹',
+                link: '/outbound/picking-total',
+                collapsed: false,
+                items: [
+                  { text: '피킹 슬립', link: '/outbound/picking-slip' }
+                ]
+              },
               { text: '예외 피킹·재고부족', link: '/outbound/picking-exceptions' }
             ]
           },
           { text: 'B2B 피킹', link: '/outbound/picking-b2b' }
         ]
       },
-      { text: '패킹', link: '/outbound/packing' },
+      {
+        text: '패킹',
+        link: '/outbound/packing',
+        collapsed: false,
+        items: [
+          { text: '패킹 슬립', link: '/outbound/packing-slip' }
+        ]
+      },
       { text: '상차', link: '/outbound/loading' },
       { text: '출고 완료', link: '/outbound/completion' },
       { text: '취소·재고 복구', link: '/outbound/cancellation' }
@@ -133,6 +148,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     text: '기타',
     collapsed: false,
     items: [
+      { text: 'COLO 1.0', link: '/other/colo-1' },
       { text: 'G마켓 스타배송', link: '/other/gmarket-star-delivery' }
     ]
   }
@@ -140,14 +156,14 @@ const sidebar: DefaultTheme.SidebarItem[] = [
 
 export default defineConfig({
   lang: 'ko-KR',
-  title: 'WMS Domain Docs',
-  titleTemplate: ':title · WMS Domain Docs',
-  description: '상품·재고·입고·출고·배송·송장·반품 도메인을 이해하는 WMS 문서',
+  title: 'CGKR Docs',
+  titleTemplate: ':title · CGKR Docs',
+  description: '상품·재고·입고·출고·배송·송장·반품 도메인을 이해하는 CGKR 문서',
   base: '/docs/',
   cleanUrls: true,
   lastUpdated: false,
   head: [
-    ['meta', { name: 'theme-color', content: '#29313d' }],
+    ['meta', { name: 'theme-color', content: '#0047D9' }],
     ['meta', { name: 'color-scheme', content: 'light dark' }],
     ['meta', { name: 'robots', content: 'noindex, nofollow, noarchive' }],
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/docs/logo.svg' }]
@@ -155,7 +171,7 @@ export default defineConfig({
   markdown: { headers: { level: [2, 4] }, lineNumbers: false },
   themeConfig: {
     logo: '/logo.svg',
-    siteTitle: 'WMS Domain Docs',
+    siteTitle: 'CGKR Docs',
     nav: [
       { text: '시작하기', link: '/getting-started/' },
       { text: '상품', link: '/product/' },
@@ -164,7 +180,7 @@ export default defineConfig({
       { text: '출고', link: '/outbound/' },
       { text: '배송·송장', link: '/shipping/' },
       { text: '반품', link: '/return/' },
-      { text: '기타', link: '/other/gmarket-star-delivery' }
+      { text: '기타', link: '/other/colo-1' }
     ],
     sidebar,
     search: {
@@ -188,7 +204,7 @@ export default defineConfig({
     returnToTopLabel: '맨 위로',
     footer: {
       message: '상품·재고·입고·출고·배송·송장·반품과 채널별 물류 흐름을 정리합니다.',
-      copyright: 'WMS Domain Docs'
+      copyright: 'CGKR Docs'
     }
   }
 })

@@ -11,7 +11,7 @@ description: 센터에 도착한 BOX·PALLET 등 입고 형태 수량을 확인�
 
 ## 입하 흐름
 
-<div class="flow-strip"><span>입고 신청서 코드 스캔</span><i>→</i><span>입고 형태 선택</span><i>→</i><span>도착 수량 입력</span><i>→</i><span>입하 Zone 스캔</span><i>→</i><span>입하 회차 완료</span></div>
+<div class="flow-strip"><span>입고 주문 식별</span><i>→</i><span>입고 형태 선택</span><i>→</i><span>도착 수량 입력</span><i>→</i><span>입하 Zone 스캔</span><i>→</i><span>입하 회차 완료</span></div>
 
 ## 입고 형태
 
@@ -41,7 +41,7 @@ description: 센터에 도착한 BOX·PALLET 등 입고 형태 수량을 확인�
 
 - 신청 물량보다 적게 도착
 - 신청 잔여보다 많은 수량 도착
-- 다른 입고 신청의 물량 도착
+- 다른 입고 주문의 물량 도착
 - 입하 Zone 오스캔
 - 파손된 BOX·PALLET
 - 센터가 수령하지 않고 회송하는 물량
