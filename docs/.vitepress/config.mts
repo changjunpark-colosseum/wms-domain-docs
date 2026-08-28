@@ -105,7 +105,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
       { text: '송장 재출력', link: '/shipping/reprint' },
       { text: '추가 송장', link: '/shipping/additional' },
       { text: '택배사 변경·재발번', link: '/shipping/carrier-change' },
-      { text: 'Box·송장 연결', link: '/shipping/box-waybill' },
+      { text: 'Box·송장번호 연결', link: '/shipping/box-tracking' },
       { text: '배송 추적·반품 연계', link: '/shipping/tracking-return' }
     ]
   },

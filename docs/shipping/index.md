@@ -25,7 +25,7 @@ description: 배송지 주소 검증부터 택배사 선택·송장 발번·출�
 | 재출력 | 기존 송장번호 유지·재인쇄 |
 | 추가 송장 | 분할 Box의 추가 운송번호 생성 |
 | 택배사 변경 | 기존 송장 무효화·새 택배사 발번 |
-| Box·송장 연결 | 박스별 내용물·송장 관계 보존 |
+| Box·송장번호 연결 | 패킹 상세별 내용물·Tracking 관계 보존 |
 | 배송 추적·반품 | 배송 상태와 원송장 기반 반품 조회 |
 
 ## 출고 유형별 정책
@@ -55,5 +55,5 @@ description: 배송지 주소 검증부터 택배사 선택·송장 발번·출�
 - [송장 재출력](/shipping/reprint)
 - [추가 송장](/shipping/additional)
 - [택배사 변경·재발번](/shipping/carrier-change)
-- [Box·송장 연결](/shipping/box-waybill)
+- [Box·송장번호 연결](/shipping/box-tracking)
 - [배송 추적·반품 연계](/shipping/tracking-return)

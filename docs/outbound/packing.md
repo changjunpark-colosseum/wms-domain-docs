@@ -140,6 +140,6 @@ B2B 차량 출고에는 택배 송장을 발행하지 않는다. 패킹 슬립�
 ## 관련 문서
 
 - [총량 피킹](/outbound/picking-total)
-- [Box·송장 연결](/shipping/box-waybill)
+- [Box·송장번호 연결](/shipping/box-tracking)
 - [송장 출력](/shipping/printing)
 - [상차](/outbound/loading)

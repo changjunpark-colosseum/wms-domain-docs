@@ -33,8 +33,8 @@ Product
 
 Inbound ── Stock 생성·적치
 Outbound ─ Stock 예약·피킹·출고
-Box ────── Waybill 연결
-Return ─── 원출고·Waybill 조회 후 품질 판정
+Box ────── 송장번호·Tracking 상세 연결
+Return ─── 원출고·원송장번호 조회 후 품질 판정
 ```
 
 ## 재고 관점에서 보기
