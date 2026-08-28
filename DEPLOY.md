@@ -1,31 +1,21 @@
-# 외부 배포
+# 내부 실행 정책
 
-사이트는 정적 파일로 빌드되며 GitHub Pages, Cloudflare Pages, Netlify 또는 Vercel에 배포할 수 있다.
+이 프로젝트는 CGKR 회사 내부 정책을 포함하므로 외부 정적 호스팅 대상으로 사용하지 않는다.
 
-## GitHub Pages
-
-1. 새 공개 저장소를 만든다.
-2. 이 프로젝트를 저장소에 연결한다.
-3. 기본 브랜치를 `main`으로 사용한다.
-4. 저장소 Settings → Pages → Source에서 `GitHub Actions`를 선택한다.
-5. `main`에 push하면 `.github/workflows/deploy.yml`이 자동 배포한다.
-
-프로젝트 사이트의 base path는 워크플로가 저장소 이름으로 자동 설정한다.
-
-## Cloudflare Pages
-
-- Build command: `npm run docs:build`
-- Output directory: `docs/.vitepress/dist`
-- Node version: `22` 이상
-
-루트 도메인이나 커스텀 도메인에서는 별도 base 설정이 필요 없다.
-
-## 배포 전 점검
+## 허용된 실행
 
 ```bash
 npm ci
-npm run docs:build
 npm run docs:preview
 ```
 
-외부 공개 전 `npm run docs:build`와 금칙어 검사를 다시 수행한다.
+기본 미리보기 주소는 `http://localhost:4173`이다.
+
+## 금지된 실행
+
+- GitHub Pages 공개 배포
+- Cloudflare Pages, Netlify, Vercel 등 외부 호스팅
+- Public 저장소 전환
+- Vault 전체 또는 허용 목록 밖의 파일 동기화
+
+사내 인증이 적용된 별도 호스팅이 필요하면 정확한 대상과 접근정책을 먼저 승인받아야 한다.
