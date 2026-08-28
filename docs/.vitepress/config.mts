@@ -1,5 +1,7 @@
 import { defineConfig, type DefaultTheme } from 'vitepress'
 
+const docsBase = process.env.DOCS_BASE ?? '/docs/'
+
 const sidebar: DefaultTheme.SidebarItem[] = [
   {
     text: '시작하기',
@@ -155,14 +157,14 @@ export default defineConfig({
   title: 'CGKR Docs',
   titleTemplate: ':title · CGKR Docs',
   description: '상품·재고·입고·출고·배송·송장·반품과 외부 연동을 이해하는 CGKR 문서',
-  base: '/docs/',
+  base: docsBase,
   cleanUrls: true,
   lastUpdated: false,
   head: [
     ['meta', { name: 'theme-color', content: '#0047D9' }],
     ['meta', { name: 'color-scheme', content: 'light dark' }],
     ['meta', { name: 'robots', content: 'noindex, nofollow, noarchive' }],
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/docs/logo.svg' }]
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${docsBase}logo.svg` }]
   ],
   markdown: { headers: { level: [2, 4] }, lineNumbers: false },
   themeConfig: {
