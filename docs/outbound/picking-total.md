@@ -89,7 +89,7 @@ description: 여러 출고 주문의 동일 SKU 총량을 피킹 슬립·Con 단
 |---|---|
 | 총량 피킹을 작업자별로 분할 | 패킹할 주문·상품·수량 식별 |
 | 작업자·Con·피킹 상태 관리 | 패킹 검수·출력·스캔 관리 |
-| PICK Location → PACK Zone | PACK Zone → Box·송장·패킹 완료 |
+| 피킹로케이션(`PICK`) → PACK Zone | PACK Zone → Box·송장·패킹 완료 |
 
 ## 예외
 

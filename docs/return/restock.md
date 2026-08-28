@@ -7,7 +7,7 @@ description: 양품 판정 반품을 Cart·Container에서 정상 Location으로
 
 <div class="page-meta"><span>반품</span><span>정상 재고 복귀</span><span>10분</span></div>
 
-양품화는 품질 판정이 끝난 정상 상품을 다시 판매 가능한 상태로 만들고 피킹·보관 Location에 적치하는 작업이다.
+양품화는 품질 판정이 끝난 정상 상품을 다시 판매 가능한 상태로 만들고 피킹로케이션(`PICK`)·보관로케이션(`STRG`)에 적치하는 작업이다.
 
 ## 양품화 흐름
 

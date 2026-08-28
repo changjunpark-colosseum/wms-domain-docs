@@ -1,6 +1,6 @@
 ---
 title: Location
-description: Stock이 놓이는 창고 주소와 보관·피킹·입하·적치 작업 가능 조건을 관리하는 정책
+description: Stock이 놓이는 창고 주소와 보관로케이션(STRG)·피킹로케이션(PICK)·입하·적치 작업 가능 조건을 관리하는 정책
 ---
 
 # Location
@@ -24,7 +24,7 @@ Center
 | 계층 | 의미 | 예시 |
 |---|---|---|
 | Center | 하나의 물류센터 | 용인 1센터 |
-| Zone | 같은 작업 목적과 정책을 공유하는 구역 | PICK·STORAGE·PACK |
+| Zone | 같은 작업 목적과 정책을 공유하는 구역 | 피킹로케이션(PICK)·보관로케이션(STRG)·PACK |
 | Aisle | 작업자가 이동하는 통로 또는 랙 열 | A01 |
 | Bay | Aisle 안에서 가로로 나눈 랙 한 구간 | B03 |
 | Tier | Bay를 높이 방향으로 나눈 단 | T02 |
@@ -50,8 +50,8 @@ Zone은 같은 업무 목적을 가진 Location의 묶음이다.
 |---|---|
 | INBOUND | 입하·검수 전후 재고가 머무는 구역 |
 | STOW | 적치 작업을 준비하는 구역 |
-| STORAGE | 장기 보관 Location |
-| PICK | 출고 피킹에 사용하는 Location |
+| 보관로케이션(`STRG`) | 장기 보관에 사용하는 Location |
+| 피킹로케이션(`PICK`) | 출고 피킹에 사용하는 Location |
 | PACK | 피킹 완료 재고를 인계받아 패킹 검수·Box 구성·송장 작업을 수행하는 구역 |
 | RETURN | 반품 검수 전 재고 구역 |
 | DEFECT·DISPOSAL | 불량·폐기 대상 격리 구역 |
@@ -60,7 +60,7 @@ Zone은 같은 업무 목적을 가진 Location의 묶음이다.
 
 - Location 코드
 - Center·Zone·Aisle·Bay·Tier·Slot
-- 보관·피킹 등 용도
+- 보관로케이션(`STRG`)·피킹로케이션(`PICK`) 등 용도
 - 활성·HOLD 상태
 - 바닥·랙·선반 등 물리 유형
 - 허용 상품·화주
@@ -83,7 +83,7 @@ Center·Zone 선택
 
 1. 상위 Center와 Zone이 활성 상태여야 한다.
 2. Location 코드와 Aisle·Bay·Tier·Slot 조합은 같은 센터 안에서 중복될 수 없다.
-3. RACK·SHELF·FLOOR·DOCK 같은 물리 유형과 STORAGE·PICK·PACK 같은 작업 용도를 구분해 등록한다.
+3. RACK·SHELF·FLOOR·DOCK 같은 물리 유형과 보관로케이션(`STRG`)·피킹로케이션(`PICK`)·PACK 같은 작업 용도를 구분해 등록한다.
 4. 최대 수량·중량·부피 등 Capacity를 설정한 뒤 적치에 사용한다.
 5. 고정 Location은 허용 화주·SKU를 함께 지정하고, 자유 Location은 비어 있을 때 다른 SKU를 받을 수 있다.
 6. 생성 직후에는 Stock이 없는 `EMPTY`이며, 입고·이동·보충이 완료돼야 Stock이 귀속된다.
@@ -142,7 +142,7 @@ Location 삭제는 주소 문자열을 지우는 일이 아니다. Stock과 작�
 4. HOLD Location은 신규 작업 대상에서 제외한다.
 5. 도착 Location의 Center·Zone·상품·용량 조건을 검증한다.
 6. Stock 이동 후 출발지와 도착지의 점유 상태를 다시 계산한다.
-7. 피킹 Location과 보관 Location의 역할을 구분한다.
+7. 피킹로케이션(`PICK`)과 보관로케이션(`STRG`)의 역할을 구분한다.
 8. PACK Zone은 출고 작업 중 재고가 머무는 구역이며 장기 보관이나 신규 재고 할당에 사용하지 않는다.
 9. Aisle·Bay·Tier·Slot 조합은 같은 센터 안에서 하나의 Location만 가리켜야 한다.
 10. 계층 일부를 사용하지 않는 바닥·도크 Location도 센터의 코드 규칙에 따라 식별 가능해야 한다.

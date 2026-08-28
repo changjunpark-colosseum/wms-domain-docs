@@ -22,7 +22,17 @@ description: 출고를 피킹 방식별 작업으로 생성하고 한 명의 작
 
 ## 생성 흐름
 
-<div class="flow-strip"><span>출고 선택</span><i>→</i><span>피킹 방식 선택</span><i>→</i><span>PICK Stock 조회</span><i>→</i><span>가용수량 확인</span><i>→</i><span>작업·상세 생성</span><i>→</i><span>작업번호 발번</span></div>
+<div class="flow-strip"><span>출고 선택</span><i>→</i><span>피킹 방식 선택</span><i>→</i><span>대상 Zone Stock 조회</span><i>→</i><span>가용수량 확인</span><i>→</i><span>작업·상세 생성</span><i>→</i><span>작업번호 발번</span></div>
+
+## Zone별 재고 할당
+
+| 출고 유형 | 작업 생성 시 대상 Zone | 선택 가능 여부 |
+|---|---|---|
+| B2C | 피킹로케이션(`PICK`) | 고정. 보관로케이션(`STRG`) Stock은 직접 할당하지 않음 |
+| B2B 기본 | 피킹로케이션(`PICK`) + 보관로케이션(`STRG`) | 두 Location 유형의 가용 Stock 사용 |
+| B2B 피킹 존 피킹 | 피킹로케이션(`PICK`) | 관리자가 옵션을 선택하면 피킹로케이션(`PICK`)으로 제한 |
+
+실제 Stock을 할당하는 Location 유형 조건은 피킹지시 생성 시 적용한다. B2C 상품이 보관로케이션(`STRG`)에만 있으면 먼저 피킹로케이션(`PICK`)으로 보충해야 한다. B2B는 기본 설정에서 보관로케이션(`STRG`) Stock을 피킹 작업에 직접 포함할 수 있다.
 
 ## 작업자 할당
 
@@ -43,6 +53,10 @@ description: 출고를 피킹 방식별 작업으로 생성하고 한 명의 작
 6. 작업 생성 수량은 현재 가용 Stock 수량을 초과할 수 없다.
 7. 작업 생성 시 사용 수량과 출고 계획 수량을 함께 기록한다.
 8. 작업자 지정 후 작업은 `WAIT` 상태에서 시작한다.
+9. B2C 작업은 피킹로케이션(`PICK`)의 가용 Stock만 할당한다.
+10. B2B 작업은 기본적으로 피킹로케이션(`PICK`)·보관로케이션(`STRG`)을 사용하고, `피킹 존 피킹` 선택 시 피킹로케이션(`PICK`)만 할당한다.
+11. 실제 할당된 Stock ID·Location 유형·계획 수량을 작업 상세에 보존한다.
+12. B2C 피킹로케이션(`PICK`) 재고가 부족하고 보관로케이션(`STRG`)에 재고가 있으면 보충과 피킹지시 생성의 순서를 구분한다.
 
 ## 작업 목록
 
@@ -59,4 +73,12 @@ description: 출고를 피킹 방식별 작업으로 생성하고 한 명의 작
 - 다른 작업자에게 먼저 할당됨
 - 이미 완료·취소된 작업
 - 재고 부족으로 작업 생성 실패
+- B2C 보관로케이션(`STRG`) 재고를 피킹 작업에 직접 할당
+- B2B Zone 옵션과 실제 할당 Location 불일치
 - 총량 상위 작업 전체에 작업자 지정 시도
+
+## 관련 문서
+
+- [B2C 피킹](/outbound/picking-b2c)
+- [B2B 피킹](/outbound/picking-b2b)
+- [보충](/inventory/replenishment)

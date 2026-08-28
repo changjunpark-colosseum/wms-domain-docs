@@ -20,7 +20,7 @@ description: WRO·임시 취급 단위·STOW Zone과 추가 작업 이력으로 
 | STOW Zone | 검수 완료 임시빈이 최종 적치 전 대기하는 작업 구역 |
 | 추가 작업 | Pallet·재포장·부자재 사용 등의 작업 이력 |
 
-CGKR에서는 임시빈을 `ZN-STOW-1`과 같은 STOW Zone에 인계한다. 화면에서는 이 스캔 대상을 `Master Location`이라고 표현하지만 최종 PICK·STORAGE Location이나 Location 기준정보의 상위 객체를 의미하지 않는다.
+CGKR에서는 임시빈을 `ZN-STOW-1`과 같은 STOW Zone에 인계한다. 화면에서는 이 스캔 대상을 `Master Location`이라고 표현하지만 최종 피킹로케이션(`PICK`)·보관로케이션(`STRG`)이나 Location 기준정보의 상위 객체를 의미하지 않는다.
 
 ## 객체 관계
 
@@ -69,7 +69,7 @@ STOWBIN에는 상품·LOT·유효기간이 다른 수량을 섞지 않는다. �
 → 임시빈 라벨 부착
 → ZN-STOW-1 스캔
 → STOW Zone 대기
-→ 최종 PICK·STORAGE Location 적치
+→ 최종 피킹로케이션(PICK)·보관로케이션(STRG) 적치
 ```
 
 STOW Zone 인계는 최종 적치 완료가 아니다.

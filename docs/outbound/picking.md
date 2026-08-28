@@ -1,13 +1,18 @@
 ---
 title: 피킹 개요
-description: 작업자가 PICK Location의 상품을 스캔해 Cart·Con으로 옮기고 PACK Zone에 인계하는 공통 정책
+description: 작업자가 피킹지시에 지정된 Location의 상품을 Cart·Con으로 옮기고 PACK Zone에 인계하는 공통 정책
 ---
 
 # 피킹 개요
 
 <div class="page-meta"><span>출고</span><span>피킹</span><span>10분</span></div>
 
-피킹은 생성된 작업의 상품을 PICK Location에서 꺼내 Cart·Con으로 옮기고 PACK Zone에 인계하는 작업이다. B2C와 B2B는 작업 구성과 운반체 스캔 순서가 다르다.
+피킹은 생성된 작업의 상품을 지정된 Location에서 꺼내 Cart·Con으로 옮기고 PACK Zone에 인계하는 작업이다. B2C와 B2B는 작업 구성뿐 아니라 작업 생성 시 사용할 수 있는 Zone 범위도 다르다.
+
+| 구분 | 피킹 대상 Zone |
+|---|---|
+| B2C | 피킹로케이션(`PICK`) |
+| B2B | 기본 피킹로케이션(`PICK`)·보관로케이션(`STRG`), 옵션 선택 시 피킹로케이션(`PICK`)만 |
 
 ## 공통 흐름
 
@@ -26,13 +31,14 @@ description: 작업자가 PICK Location의 상품을 스캔해 Cart·Con으로 �
 ## 정책
 
 1. 작업자 본인에게 할당된 작업만 수행한다.
-2. 지정된 PICK Location과 상품 바코드를 순서대로 확인한다.
+2. 작업에 지정된 Location과 상품 바코드를 순서대로 확인한다.
 3. 실제 피킹 수량은 남은 계획 수량을 초과할 수 없다.
 4. 상품·Location 불일치 시 수량을 변경하지 않는다.
 5. 피킹 중단 시 완료 수량과 남은 수량을 보존한다.
 6. 모든 상품 처리가 끝난 뒤 PACK Zone으로 인계한다.
 7. 피킹 완료는 출고 완료가 아니며 재고 총량을 감소시키지 않는다.
 8. 재고부족·스킵·오피킹은 정상 완료와 분리한다.
+9. 작업자가 임의로 작업에 없는 Zone·Location의 재고를 대신 피킹하지 않는다.
 
 ## 피킹 방식
 
