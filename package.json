@@ -1,0 +1,17 @@
+{
+  "name": "wms-study-docs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "npm run docs:build && vitepress preview docs --host 127.0.0.1 --port 4173"
+  },
+  "devDependencies": {
+    "vitepress": "2.0.0-alpha.19"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

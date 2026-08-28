@@ -1,0 +1,63 @@
+/* Public subset adapted from cgkr_frontend/packages/ui design tokens. */
+:root {
+  --cg-white: #ffffff;
+
+  --cg-natural-50: #f6f7f9;
+  --cg-natural-100: #e7eaef;
+  --cg-natural-200: #c8cfda;
+  --cg-natural-300: #a3afc1;
+  --cg-natural-400: #8595ad;
+  --cg-natural-500: #677b98;
+  --cg-natural-600: #52627a;
+  --cg-natural-700: #3e4a5c;
+  --cg-natural-800: #29313d;
+  --cg-natural-900: #15191f;
+
+  --cg-blue-50: #fafcff;
+  --cg-blue-75: #f2faff;
+  --cg-blue-100: #ccdfff;
+  --cg-blue-200: #99c0ff;
+  --cg-blue-300: #66a0ff;
+  --cg-blue-400: #3381ff;
+  --cg-blue-500: #0061ff;
+  --cg-blue-600: #004ecc;
+  --cg-blue-700: #0047d9;
+  --cg-blue-900: #001333;
+
+  --cg-success: #289a3a;
+  --cg-success-muted: #ebfaf2;
+  --cg-warning: #d98c00;
+  --cg-warning-muted: #fff7e6;
+  --cg-danger: #d50606;
+  --cg-danger-muted: #fff0f0;
+  --cg-info: #0073d9;
+  --cg-info-muted: #edf5ff;
+
+  --cg-radius-sm: 6px;
+  --cg-radius-md: 8px;
+  --cg-radius-lg: 10px;
+  --cg-radius-xl: 12px;
+  --cg-radius-2xl: 16px;
+  --cg-radius-full: 9999px;
+
+  --cg-space-1: 4px;
+  --cg-space-2: 8px;
+  --cg-space-3: 12px;
+  --cg-space-4: 16px;
+  --cg-space-5: 20px;
+  --cg-space-6: 24px;
+  --cg-space-8: 32px;
+  --cg-space-10: 40px;
+  --cg-space-12: 48px;
+  --cg-space-16: 64px;
+
+  --cg-control-md: 40px;
+  --cg-body-size: 16px;
+  --cg-body-line: 26px;
+  --cg-h1-size: 40px;
+  --cg-h1-line: 52px;
+  --cg-h2-size: 32px;
+  --cg-h2-line: 42px;
+  --cg-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05);
+  --cg-focus-ring: 0 0 0 3px rgba(0, 97, 255, 0.25);
+}

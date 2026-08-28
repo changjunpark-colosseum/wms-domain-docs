@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" role="img" aria-labelledby="title desc">
+  <title id="title">상품에서 정산까지 이어지는 창고 흐름</title>
+  <desc id="desc">상품, 입고, 재고, 출고, 반품, 정산을 여섯 개 카드로 연결한 단색 도메인 지도</desc>
+  <rect x="38" y="42" width="604" height="436" rx="32" fill="#f6f7f9" stroke="#e7eaef"/>
+  <path d="M138 164h404M138 352h404" fill="none" stroke="#c8cfda" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12"/>
+  <path d="m517 164-15-10v20Zm-354 188 15-10v20Z" fill="#677b98"/>
+  <g font-family="Pretendard,Arial,sans-serif">
+    <g transform="translate(78 102)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M28 27h14v16H28zM26 31h18" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">상품</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Product · SKU</text>
+    </g>
+    <g transform="translate(260 102)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M26 39h18M30 28h10v11H30z" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">입고</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Receive · Inspect</text>
+    </g>
+    <g transform="translate(442 102)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M27 29h16v14H27zm0 5h16M35 29v14" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">재고</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Stock · Location</text>
+    </g>
+    <g transform="translate(442 290)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M26 29h18v12H26zm4 12v4m10-4v4" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">출고</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Pick · Pack · Ship</text>
+    </g>
+    <g transform="translate(260 290)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M43 31a8 8 0 1 0-1 10M43 31v7h-7" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">반품</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Return · Grade</text>
+    </g>
+    <g transform="translate(78 290)">
+      <rect width="160" height="124" rx="12" fill="#fff" stroke="#e7eaef"/>
+      <rect x="18" y="18" width="34" height="34" rx="8" fill="#f2faff"/>
+      <path d="M27 28h16v16H27zm4 5h8m-8 5h5" fill="none" stroke="#0061ff" stroke-width="2"/>
+      <text x="18" y="76" font-size="18" font-weight="700" fill="#29313d">정산</text>
+      <text x="18" y="99" font-size="12" fill="#677b98">Usage · Billing</text>
+    </g>
+  </g>
+</svg>
