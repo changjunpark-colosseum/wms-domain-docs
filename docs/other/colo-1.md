@@ -131,6 +131,8 @@ CGKR에서 COLO 명세서를 볼 수 있다는 이유로 CGKR이 정산 금액�
 
 ## 연결되는 문서
 
+- [외부 연동](/integration/)
+- [주문 연동](/integration/order-sync)
 - [상품 외부 동기화](/product/external-sync)
 - [입고 주문](/inbound/order)
 - [출고 신청·주문](/outbound/order)

@@ -7,6 +7,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     collapsed: false,
     items: [
       { text: 'WMS 이해하기', link: '/getting-started/' },
+      { text: '운영 주체와 역할', link: '/getting-started/actors-roles' },
       { text: '전체 도메인 흐름', link: '/getting-started/domain-flow' },
       { text: '핵심 용어', link: '/getting-started/glossary' }
     ]
@@ -75,28 +76,14 @@ const sidebar: DefaultTheme.SidebarItem[] = [
             items: [
               { text: '개별 피킹', link: '/outbound/picking-individual' },
               { text: '클러스터 피킹', link: '/outbound/picking-cluster' },
-              {
-                text: '총량 피킹',
-                link: '/outbound/picking-total',
-                collapsed: false,
-                items: [
-                  { text: '피킹 슬립', link: '/outbound/picking-slip' }
-                ]
-              },
+              { text: '총량 피킹', link: '/outbound/picking-total' },
               { text: '예외 피킹·재고부족', link: '/outbound/picking-exceptions' }
             ]
           },
           { text: 'B2B 피킹', link: '/outbound/picking-b2b' }
         ]
       },
-      {
-        text: '패킹',
-        link: '/outbound/packing',
-        collapsed: false,
-        items: [
-          { text: '패킹 슬립', link: '/outbound/packing-slip' }
-        ]
-      },
+      { text: '패킹', link: '/outbound/packing' },
       { text: '상차', link: '/outbound/loading' },
       { text: '출고 완료', link: '/outbound/completion' },
       { text: '취소·재고 복구', link: '/outbound/cancellation' }
@@ -145,6 +132,15 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     ]
   },
   {
+    text: '외부 연동',
+    link: '/integration/',
+    collapsed: false,
+    items: [
+      { text: '연동 개요', link: '/integration/' },
+      { text: '주문 연동', link: '/integration/order-sync' }
+    ]
+  },
+  {
     text: '기타',
     collapsed: false,
     items: [
@@ -158,7 +154,7 @@ export default defineConfig({
   lang: 'ko-KR',
   title: 'CGKR Docs',
   titleTemplate: ':title · CGKR Docs',
-  description: '상품·재고·입고·출고·배송·송장·반품 도메인을 이해하는 CGKR 문서',
+  description: '상품·재고·입고·출고·배송·송장·반품과 외부 연동을 이해하는 CGKR 문서',
   base: '/docs/',
   cleanUrls: true,
   lastUpdated: false,
@@ -180,6 +176,7 @@ export default defineConfig({
       { text: '출고', link: '/outbound/' },
       { text: '배송·송장', link: '/shipping/' },
       { text: '반품', link: '/return/' },
+      { text: '연동', link: '/integration/' },
       { text: '기타', link: '/other/colo-1' }
     ],
     sidebar,
@@ -203,7 +200,7 @@ export default defineConfig({
     sidebarMenuLabel: '문서 목차',
     returnToTopLabel: '맨 위로',
     footer: {
-      message: '상품·재고·입고·출고·배송·송장·반품과 채널별 물류 흐름을 정리합니다.',
+      message: 'CGKR 물류 도메인과 외부 시스템 연동 흐름을 정리합니다.',
       copyright: 'CGKR Docs'
     }
   }

@@ -60,6 +60,7 @@ Return ─── 원출고·Waybill 조회 후 품질 판정
 
 ## 이어서 보기
 
+- [운영 주체와 역할](/getting-started/actors-roles)
 - [핵심 용어](/getting-started/glossary)
 - [상품](/product/)
 - [재고](/inventory/)

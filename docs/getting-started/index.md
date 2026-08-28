@@ -28,7 +28,8 @@ WMS(Warehouse Management System)는 물류센터 안에서 **어떤 상품이, �
 처음이라면 다음 순서로 읽는 것이 좋다.
 
 ```text
-전체 도메인 흐름
+운영 주체와 역할
+→ 전체 도메인 흐름
 → 핵심 용어
 → 상품
 → Inventory·Stock·Location
@@ -61,6 +62,7 @@ Inventory는 증감 사건을 반영한 장부 수량이고, Stock은 특정 Loc
 
 ## 다음 문서
 
+- [운영 주체와 역할](/getting-started/actors-roles)
 - [전체 도메인 흐름](/getting-started/domain-flow)
 - [핵심 용어](/getting-started/glossary)
 - [상품](/product/)

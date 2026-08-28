@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "CGKR 주문 연동 시퀀스",
+    "output": "docs/public/diagrams/order-integration-sequence.html",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [1200, 900]
+  },
+  "participants": [
+    { "id": "external", "type": "external", "label": "외부 채널·COLO", "sublabel": "요청·결과" },
+    { "id": "oms", "type": "backend", "label": "cgkr_oms", "sublabel": "수집·회신" },
+    { "id": "itf", "type": "database", "label": "ITF", "sublabel": "연동 대기" },
+    { "id": "batch", "type": "backend", "label": "cgkr_batch", "sublabel": "1분 fixed delay" },
+    { "id": "app", "type": "backend", "label": "cgkr_app", "sublabel": "내부 동기화 API" },
+    { "id": "work", "type": "backend", "label": "CGKR 물류 작업", "sublabel": "입고·재고·출고·반품" }
+  ],
+  "segments": [
+    { "from": 150, "to": 358, "label": "상품·주문 수집" },
+    { "from": 382, "to": 642, "label": "CGKR 동기화·작업" },
+    { "from": 666, "to": 846, "label": "결과 회신" }
+  ],
+  "messages": [
+    { "id": "product_push", "from": "external", "to": "oms", "y": 180, "label": "POST /api/v1/oms/product", "variant": "emphasis", "note": "외부 상품 등록" },
+    { "id": "product_wait", "from": "oms", "to": "itf", "y": 222, "label": "상품 원본·이력·WAIT 저장", "variant": "emphasis" },
+    { "id": "order_push", "from": "external", "to": "oms", "y": 272, "label": "POST /api/v1/oms/order", "variant": "emphasis", "note": "외부 주문 등록" },
+    { "id": "order_wait", "from": "oms", "to": "itf", "y": 314, "label": "주문·상품 상세·WAIT 저장", "variant": "emphasis" },
+    { "id": "batch_poll", "from": "batch", "to": "itf", "y": 412, "label": "WAIT 상품·주문 조회", "variant": "dashed", "note": "이전 실행 완료 후 1분" },
+    { "id": "batch_targets", "from": "itf", "to": "batch", "y": 454, "label": "동기화 대상 ID", "variant": "return" },
+    { "id": "sync_request", "from": "batch", "to": "app", "y": 496, "label": "상품 매핑 → 신규 주문 → 변경·취소", "variant": "emphasis" },
+    { "id": "work_create", "from": "app", "to": "work", "y": 542, "label": "업무 객체·작업 생성", "variant": "emphasis" },
+    { "id": "work_result", "from": "work", "to": "app", "y": 590, "label": "입고·재고·출고·반품 결과", "variant": "return" },
+    { "id": "sync_result", "from": "app", "to": "batch", "y": 626, "label": "생성 결과·실패 사유", "variant": "return" },
+    { "id": "result_poll", "from": "oms", "to": "app", "y": 704, "label": "출고·송장 결과 대상 조회", "variant": "dashed", "note": "이전 실행 완료 후 1분" },
+    { "id": "result_data", "from": "app", "to": "oms", "y": 756, "label": "대표·추가 송장·송장 취소", "variant": "return" },
+    { "id": "fulfillment_webhook", "from": "oms", "to": "external", "y": 808, "label": "fulfillment·웹훅", "variant": "emphasis" }
+  ],
+  "activations": [
+    { "participant": "oms", "from": 174, "to": 322, "type": "backend" },
+    { "participant": "itf", "from": 216, "to": 462, "type": "database" },
+    { "participant": "batch", "from": 406, "to": 634, "type": "backend" },
+    { "participant": "app", "from": 490, "to": 764, "type": "backend" },
+    { "participant": "work", "from": 536, "to": 598, "type": "backend" },
+    { "participant": "oms", "from": 698, "to": 816, "type": "backend" }
+  ]
+}

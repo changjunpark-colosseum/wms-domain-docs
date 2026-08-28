@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 860" role="img" aria-labelledby="title desc">
+  <title id="title">CGKR 주문 연동 시퀀스</title>
+  <desc id="desc">외부 채널과 COLO에서 상품과 주문을 cgkr_oms로 전달하고 ITF, cgkr_batch, CGKR을 거쳐 결과가 다시 외부로 전달되는 순서</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#0061ff"/></marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#64748b"/></marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#e56f17"/></marker>
+    <style>
+      .title{font:700 17px Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172033}.sub{font:500 11px Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#64748b}.section{font:700 11px Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.04em}.msg{font:600 12px Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#334155;text-anchor:middle}.note{font:700 10px Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#a86100;text-anchor:middle}.life{stroke:#cbd5e1;stroke-width:1.5;stroke-dasharray:6 6}.blue{stroke:#0061ff;stroke-width:2;marker-end:url(#arrow-blue)}.slate{stroke:#64748b;stroke-width:1.7;stroke-dasharray:6 4;marker-end:url(#arrow-slate)}.orange{stroke:#e56f17;stroke-width:2;marker-end:url(#arrow-orange)}
+    </style>
+  </defs>
+  <rect x="1" y="1" width="998" height="858" rx="20" fill="#fff" stroke="#dbe3ee" stroke-width="2"/>
+  <rect x="20" y="122" width="960" height="232" rx="14" fill="#f2f7ff"/><rect x="20" y="382" width="960" height="260" rx="14" fill="#f1fbf7"/><rect x="20" y="670" width="960" height="168" rx="14" fill="#fff8ef"/>
+  <text x="42" y="146" class="section" fill="#0061ff">상품·주문 수집</text><text x="42" y="406" class="section" fill="#16845f">CGKR 동기화·작업</text><text x="42" y="694" class="section" fill="#c45a0a">결과 회신</text>
+  <g>
+    <rect x="10" y="28" width="140" height="68" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/><text x="80" y="56" class="title" text-anchor="middle">외부 채널·COLO</text><text x="80" y="77" class="sub" text-anchor="middle">요청·결과</text>
+    <rect x="178" y="28" width="140" height="68" rx="10" fill="#eff6ff" stroke="#3381ff" stroke-width="2"/><text x="248" y="56" class="title" text-anchor="middle">cgkr_oms</text><text x="248" y="77" class="sub" text-anchor="middle">수집·회신</text>
+    <rect x="346" y="28" width="140" height="68" rx="10" fill="#f7f2ff" stroke="#9b6cff" stroke-width="2"/><text x="416" y="56" class="title" text-anchor="middle">ITF</text><text x="416" y="77" class="sub" text-anchor="middle">연동 대기 영역</text>
+    <rect x="514" y="28" width="140" height="68" rx="10" fill="#effaf6" stroke="#18a877" stroke-width="2"/><text x="584" y="56" class="title" text-anchor="middle">cgkr_batch</text><text x="584" y="77" class="sub" text-anchor="middle">1분 fixed delay</text>
+    <rect x="682" y="28" width="140" height="68" rx="10" fill="#effaf6" stroke="#18a877" stroke-width="2"/><text x="752" y="56" class="title" text-anchor="middle">cgkr_app</text><text x="752" y="77" class="sub" text-anchor="middle">내부 동기화 API</text>
+    <rect x="850" y="28" width="140" height="68" rx="10" fill="#f0faf7" stroke="#16845f" stroke-width="2"/><text x="920" y="56" class="title" text-anchor="middle">CGKR 물류 작업</text><text x="920" y="77" class="sub" text-anchor="middle">입고·재고·출고·반품</text>
+  </g>
+  <path d="M80 96V830M248 96V830M416 96V830M584 96V830M752 96V830M920 96V830" class="life" fill="none"/>
+  <text x="164" y="176" class="msg">상품 Push API</text><path d="M80 186H248" class="blue"/>
+  <text x="332" y="224" class="msg">상품 원본·이력·WAIT 저장</text><path d="M248 234H416" class="blue"/>
+  <text x="164" y="274" class="msg">주문 Push API</text><path d="M80 284H248" class="blue"/>
+  <text x="332" y="322" class="msg">주문·상품 상세·WAIT 저장</text><path d="M248 332H416" class="blue"/>
+  <text x="500" y="434" class="msg">WAIT 상품·주문 조회</text><text x="500" y="449" class="note">이전 실행 완료 후 1분</text><path d="M584 460H416" class="slate"/>
+  <text x="500" y="490" class="msg">동기화 대상 ID</text><path d="M416 500H584" class="blue"/>
+  <text x="668" y="530" class="msg">내부 동기화 API</text><path d="M584 540H752" class="blue"/>
+  <text x="836" y="574" class="msg">업무 객체·작업 생성</text><path d="M752 584H920" class="blue"/>
+  <text x="836" y="614" class="msg">작업 완료·상태 반영</text><path d="M920 624H752" class="slate"/>
+  <text x="500" y="716" class="msg">출고·송장 결과 대상 조회</text><text x="500" y="731" class="note">이전 실행 완료 후 1분</text><path d="M248 742H752" class="slate"/>
+  <text x="500" y="770" class="msg">대표·추가 송장·송장 취소</text><path d="M752 780H248" class="orange"/>
+  <text x="164" y="814" class="msg">fulfillment·웹훅</text><path d="M248 824H80" class="orange"/>
+</svg>

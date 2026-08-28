@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "CGKR 주문 연동 왕복 흐름",
+    "output": "docs/public/diagrams/order-integration.html",
+    "animation": "none",
+    "quality_profile": "showcase",
+    "viewBox": [1360, 600]
+  },
+  "stages": [
+    { "label": "외부 요청" },
+    { "label": "수집·검증" },
+    { "label": "연동 대기" },
+    { "label": "CGKR 실행" },
+    { "label": "결과 회신" }
+  ],
+  "nodes": [
+    { "id": "external_request", "type": "external", "label": "외부 채널·COLO", "sublabel": "상품·주문·변경·취소", "stage": 0, "row": 0, "tag": "요청 원본" },
+    { "id": "oms_ingress", "type": "backend", "label": "cgkr_oms", "sublabel": "인증·검증·정규화", "stage": 1, "row": 0, "tag": "Push API" },
+    { "id": "itf_buffer", "type": "database", "label": "ITF 연동 대기 영역", "sublabel": "상품·주문 원본과 상태", "stage": 2, "row": 0, "tag": "WAIT" },
+    { "id": "batch_sync", "type": "backend", "label": "cgkr_batch", "sublabel": "상품 매핑·주문 동기화", "stage": 2, "row": 2, "tag": "1분 fixed delay" },
+    { "id": "cgkr_app", "type": "backend", "label": "cgkr_app", "sublabel": "Product·출고 주문 생성", "stage": 3, "row": 0, "tag": "업무 규칙" },
+    { "id": "wms_work", "type": "backend", "label": "CGKR 물류 작업", "sublabel": "입고·재고·출고·반품", "stage": 3, "row": 2, "tag": "실물 실행" },
+    { "id": "result_queue", "type": "messagebus", "label": "cgkr_oms 결과 큐", "sublabel": "출고 완료·추가 송장·송장 취소", "stage": 4, "row": 2, "width": 176, "tag": "1분 fixed delay" },
+    { "id": "external_result", "type": "external", "label": "외부 채널·COLO", "sublabel": "fulfillment·배송 결과 반영", "stage": 4, "row": 0, "tag": "결과 소비" }
+  ],
+  "flows": [
+    { "id": "push_request", "from": "external_request", "to": "oms_ingress", "label": "상품·주문 Push API", "classification": "외부 식별자 유지", "variant": "emphasis", "route": "auto" },
+    { "id": "store_wait", "from": "oms_ingress", "to": "itf_buffer", "label": "원본·이력 저장", "classification": "WAIT", "variant": "emphasis", "route": "auto" },
+    { "id": "poll_wait", "from": "itf_buffer", "to": "batch_sync", "label": "대기 데이터 조회", "classification": "작업 완료 후 1분", "variant": "default", "route": "auto" },
+    { "id": "sync_internal", "from": "batch_sync", "to": "cgkr_app", "label": "내부 동기화 API", "classification": "상품 → 신규 주문 → 변경·취소", "variant": "emphasis", "route": "auto", "labelDy": 28 },
+    { "id": "start_work", "from": "cgkr_app", "to": "wms_work", "label": "물류 작업 생성·실행", "classification": "중복 업무 사건 차단", "variant": "emphasis", "route": "auto" },
+    { "id": "enqueue_result", "from": "wms_work", "to": "result_queue", "label": "완료·송장 사건", "classification": "웹훅 큐", "variant": "default", "route": "auto", "labelDy": 53 },
+    { "id": "deliver_result", "from": "result_queue", "to": "external_result", "label": "fulfillment·웹훅", "classification": "작업 완료 후 1분", "variant": "emphasis", "route": "auto" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "수집 경계", "items": ["외부 상품을 먼저 등록해야 주문 상품을 매핑할 수 있다", "ITF는 외부 원본과 CGKR 업무 객체 사이의 완충·추적 영역이다"] },
+    { "dot": "amber", "title": "실행 주기", "items": ["cgkr_batch는 이전 실행 완료 후 1분 뒤 다시 동작한다", "출고·송장 결과 회신도 cgkr_oms에서 1분 fixed delay로 동작한다"] },
+    { "dot": "emerald", "title": "정합성", "items": ["외부 식별자와 내부 식별자의 매핑을 보존한다", "결과 회신 실패가 CGKR 재고·출고 사건을 다시 실행하면 안 된다"] }
+  ]
+}

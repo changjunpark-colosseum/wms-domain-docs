@@ -54,3 +54,8 @@ description: B2C·B2B 출고 상품·수량·수취·배송 정보를 등록하�
 - 중복 판매번호·출고번호
 - 작업 중 주문 변경
 - 완료 주문 취소 시도
+
+## 관련 문서
+
+- [주문 연동](/integration/order-sync)
+- [작업 생성·할당](/outbound/work-assignment)
