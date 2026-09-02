@@ -9,6 +9,7 @@ description: 패킹 완료 화물을 차량·택배사에 인계하고 실제 �
 
 상차는 패킹과 송장이 완료된 화물을 차량 또는 택배사에 실제로 인계하는 작업이다.
 
+
 ## 상차 흐름
 
 <div class="flow-strip"><span>패킹 완료 대상 조회</span><i>→</i><span>출고·송장 선택</span><i>→</i><span>피킹·패킹·송장 조건 확인</span><i>→</i><span>차량·택배사 인계</span><i>→</i><span>상차 완료</span></div>

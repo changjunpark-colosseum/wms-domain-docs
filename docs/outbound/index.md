@@ -47,6 +47,7 @@ description: 출고 신청부터 작업 생성·피킹·패킹·상차와 출고
 ## 관련 문서
 
 - [출고 신청·주문](/outbound/order)
+- [엑셀 출고 신청](/outbound/excel-application)
 - [작업 생성·할당](/outbound/work-assignment)
 - [피킹 개요](/outbound/picking)
 - [Cart·Con](/outbound/cart-con)

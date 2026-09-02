@@ -5,7 +5,7 @@ description: B2C·B2B 출고 상품·수량·수취·배송 정보를 등록하�
 
 # 출고 신청·주문
 
-<div class="page-meta"><span>출고</span><span>주문 원장</span><span>9분</span></div>
+<div class="page-meta"><span>출고</span><span>주문 원장</span><span>12분</span></div>
 
 출고 신청은 어떤 상품을 몇 개, 누구에게, 어떤 배송 방식으로 보낼지 등록하는 출고 작업의 원장이다.
 
@@ -23,6 +23,46 @@ description: B2C·B2B 출고 상품·수량·수취·배송 정보를 등록하�
 ## 생성 흐름
 
 <div class="flow-strip"><span>출고 정보 입력</span><i>→</i><span>상품·수량 등록</span><i>→</i><span>배송 정보 확인</span><i>→</i><span>재고·필수값 검증</span><i>→</i><span>출고번호 생성</span><i>→</i><span>작업 생성 대상 등록</span></div>
+
+## 출고 상품 구성
+
+출고 신청에서 선택한 상품이 일반 상품인지 Bundle인지에 따라 주문 상품 상세의 저장 단위가 달라진다.
+
+| 상품 구성 | 신청 입력 | 출고 주문 상세 |
+|---|---|---|
+| 일반 상품 | SKU와 주문수량 | 선택한 SKU와 주문수량을 그대로 저장 |
+| Bundle 상품 | 부모 Bundle과 세트 주문수량 | 부모 Bundle 자체가 아니라 구성 SKU와 환산 수량을 저장 |
+
+```text
+신청: Bundle A × 2
+
+Bundle A
+├─ SKU-A-1 × 1  → 출고 상세 SKU-A-1 × 2
+└─ SKU-A-2 × 3  → 출고 상세 SKU-A-2 × 6
+```
+
+Bundle 구성 상품의 출고 수량은 `Bundle 주문수량 × 구성수량`으로 계산한다. 부모 Bundle ID와 원래 Bundle 주문수량도 각 구성 상품 상세에 함께 보존한다. 따라서 피킹·재고는 구성 SKU를 기준으로 처리하면서 라벨과 주문 표현에는 부모 Bundle 정보를 사용할 수 있다.
+
+직접 신청·주문 연동·엑셀 신청이 같은 구성품 전개 로직을 사용한다. 세부 저장 구조와 B2C·B2B 재고 검증 차이는 [Bundle·Set](/product/bundle), 엑셀 입력 규칙은 [엑셀 출고 신청](/outbound/excel-application)에서 확인한다.
+
+## 재고 지정 방식
+
+출고 상품 구성과 별개로, 어떤 유통기한·LOT의 Stock을 사용할지 지정할 수 있다. B2B 직접 신청 화면은 다음 네 가지 조회·신청 방식을 제공한다.
+
+| 방식 | 코드 | 저장·할당 기준 |
+|---|---|---|
+| 일반출고 | `GEN` | 특정 유통기한·LOT을 지정하지 않고 가용 Stock에서 할당 |
+| 유통기한 지정출고 | `SEL` | 선택한 유통기한을 주문 상세에 저장하고 일치하는 Stock을 할당 |
+| LOT 지정출고 | `LOT` | 선택한 LOT을 주문 상세에 저장하고 일치하는 Stock을 할당 |
+| 유통기한·LOT 지정출고 | `SLT` | 선택한 유통기한과 LOT 조합을 주문 상세에 저장하고 일치하는 Stock을 할당 |
+
+B2C 직접 신청은 일반출고를 사용한다. B2B 엑셀은 LOT가 비어 있으면 일반 할당, LOT가 있으면 LOT 지정 할당으로 저장한다. 같은 상품에 일반 할당 행과 LOT 지정 행을 함께 등록할 수 없다.
+
+::: warning 지정값과 실제 Stock
+유통기한·LOT 지정은 주문에 조건만 기록하는 기능이 아니다. 피킹 작업 생성에서도 같은 조건을 적용해 실제 Stock을 선택한다. 지정한 조건의 가용재고가 부족하면 다른 유통기한이나 LOT으로 임의 대체하지 않는다.
+:::
+
+유통기한 최소 잔여기간, 창고 작업일 버퍼와 Stock 할당 순서는 [LOT·유효기간](/inventory/lot-expiration)에서 확인한다.
 
 ## 신청 시 재고 조회 범위
 
@@ -53,18 +93,6 @@ B2C 신청 재고 조회에는 Location 유형 제한이 없지만 실제 피킹
 10. B2B 신청 재고는 피킹로케이션(`PICK`)·보관로케이션(`STRG`) 범위에서 계산한다.
 11. B2C 신청 재고가 충분하더라도 피킹로케이션(`PICK`) 재고가 부족하면 피킹 가능으로 확정하지 않는다.
 
-## B2B 엑셀 지정출고
-
-B2B 엑셀 주문에서 동일 SKU에 일반 할당과 LOT 지정 할당을 함께 사용할 수 없다.
-
-```text
-동일 SKU / 일반 할당만       → 가능
-동일 SKU / LOT 지정 할당만   → 가능
-동일 SKU / 일반 + LOT 혼합   → 불가
-```
-
-또한 같은 주문 안에서 `Sales Order + SKU + LOT` 조합을 중복 등록하지 않는다.
-
 ## 상태
 
 | 상태 | 설명 |
@@ -85,11 +113,13 @@ B2B 엑셀 주문에서 동일 SKU에 일반 할당과 LOT 지정 할당을 함�
 - 중복 판매번호·출고번호
 - 작업 중 주문 변경
 - 완료 주문 취소 시도
-- B2B 엑셀에서 동일 SKU의 일반·LOT 지정 할당 혼합
-- B2B 엑셀에서 동일한 Sales Order·SKU·LOT 중복
 
 ## 관련 문서
 
+- [엑셀 출고 신청](/outbound/excel-application)
+- [바코드·UOM](/product/barcode-uom)
+- [Bundle·Set](/product/bundle)
+- [LOT·유효기간](/inventory/lot-expiration)
 - [주문 연동](/integration/order-sync)
 - [작업 생성·할당](/outbound/work-assignment)
 - [보충](/inventory/replenishment)

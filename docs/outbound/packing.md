@@ -9,6 +9,7 @@ description: 피킹 완료 상품을 패킹 슬립으로 식별하고 주문·�
 
 패킹은 PACK Zone으로 인계된 피킹 상품을 주문과 다시 비교하고 배송 가능한 Box로 구성하는 작업이다.
 
+
 ## 전체 흐름
 
 <div class="flow-strip"><span>패킹 대상 선택</span><i>→</i><span>패킹 슬립 생성·스캔</span><i>→</i><span>상품·수량 검수</span><i>→</i><span>Box·중량</span><i>→</i><span>송장·카톤 라벨</span><i>→</i><span>완료 또는 NG</span></div>
@@ -139,6 +140,7 @@ B2B 차량 출고에는 택배 송장을 발행하지 않는다. 패킹 슬립�
 
 ## 관련 문서
 
+- [체적·중량](/product/volume-weight)
 - [총량 피킹](/outbound/picking-total)
 - [Box·송장번호 연결](/shipping/box-tracking)
 - [송장 출력](/shipping/printing)

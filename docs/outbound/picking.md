@@ -9,6 +9,7 @@ description: 작업자가 피킹지시에 지정된 Location의 상품을 Cart·
 
 피킹은 생성된 작업의 상품을 지정된 Location에서 꺼내 Cart·Con으로 옮기고 PACK Zone에 인계하는 작업이다. B2C와 B2B는 작업 구성뿐 아니라 작업 생성 시 사용할 수 있는 Zone 범위도 다르다.
 
+
 | 구분 | 피킹 대상 Zone |
 |---|---|
 | B2C | 피킹로케이션(`PICK`) |

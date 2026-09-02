@@ -57,6 +57,7 @@ Stock 총수량 = 가용수량 + HOLD 수량 + 이미 작업에 사용 중인 �
 7. 모든 수량 변화는 입고·출고·이동·조정 등 원인 작업으로 추적할 수 있어야 한다.
 8. `CHGUSE`·`CHGHLD` 수량 정정은 총수량과 대상 수량을 함께 변경한다.
 
+
 ## Stock과 Location
 
 Stock은 수량 객체이고 Location은 공간 기준정보다. 하나의 Location에 여러 Stock이 존재할 수 있으며, 하나의 SKU가 여러 Location에 분산될 수도 있다.

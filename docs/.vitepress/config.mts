@@ -21,6 +21,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: 'Product·SKU·SKU Instance', link: '/product/' },
       { text: '바코드·UOM', link: '/product/barcode-uom' },
+      { text: '체적·중량', link: '/product/volume-weight' },
       { text: 'Bundle·Set', link: '/product/bundle' },
       { text: '외부 상품·동기화', link: '/product/external-sync' }
     ]
@@ -64,6 +65,7 @@ const sidebar: DefaultTheme.SidebarItem[] = [
     items: [
       { text: '출고 개요', link: '/outbound/' },
       { text: '출고 신청·주문', link: '/outbound/order' },
+      { text: '엑셀 출고 신청', link: '/outbound/excel-application' },
       { text: '작업 생성·할당', link: '/outbound/work-assignment' },
       {
         text: '피킹',

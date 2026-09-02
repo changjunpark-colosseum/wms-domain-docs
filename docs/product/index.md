@@ -114,5 +114,6 @@ WMS 작업에 필요한 다음 정보는 상품·SKU 기준정보로 관리한�
 ## 관련 문서
 
 - [바코드·UOM](/product/barcode-uom)
+- [체적·중량](/product/volume-weight)
 - [Bundle·Set](/product/bundle)
 - [외부 상품·동기화](/product/external-sync)

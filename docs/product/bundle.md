@@ -5,7 +5,7 @@ description: 여러 SKU와 구성 수량을 하나의 판매 구성으로 묶고
 
 # Bundle·Set
 
-<div class="page-meta"><span>상품</span><span>상품 구성</span><span>10분</span></div>
+<div class="page-meta"><span>상품</span><span>상품 구성</span><span>12분</span></div>
 
 Bundle은 여러 SKU와 수량으로 만든 판매 구성이다.
 
@@ -25,6 +25,30 @@ Bundle은 두 가지 방식으로 처리할 수 있다.
 - Bundle 자체는 Stock을 보유하지 않는다.
 - 주문이 들어오면 구성 SKU와 수량으로 전개한다.
 - 출고 가능 수량은 구성 SKU 중 가장 부족한 수량을 기준으로 계산한다.
+
+출고 신청에서 Bundle 대표상품을 선택하면 주문 마스터는 한 건을 만들고, 출고 상품 상세에는 대표상품 대신 구성 상품을 저장한다. 직접 신청·주문 연동·엑셀 신청이 같은 상품 상세 저장 로직을 사용한다.
+
+```text
+신청 상품: Bundle A × 2
+
+Bundle A
+├─ SKU-A-1 × 1  → 출고 상세 SKU-A-1 × 2
+└─ SKU-A-2 × 3  → 출고 상세 SKU-A-2 × 6
+```
+
+구성 상품별 출고 수량은 다음과 같이 계산한다.
+
+```text
+구성 상품 출고 수량 = Bundle 주문수량 × Bundle 구성수량
+```
+
+출고 상품 상세의 상품 ID는 구성 상품을 가리킨다. 동시에 부모 Bundle ID, Bundle 주문수량, 구성수량을 별도 필드에 보존하므로 피킹·재고는 구성 상품으로 처리하면서 라벨과 주문 표현에는 부모 Bundle을 사용할 수 있다.
+
+| 구분 | Bundle 처리 |
+|---|---|
+| B2C 출고 | 구성 상품으로 전개하고 주문 생성 시 구성 상품 재고를 확인한다. |
+| B2B 출고 | 구성 상품으로 전개하지만 주문 생성 시에는 B2C와 같은 즉시 재고 검사를 하지 않는다. 작업 생성 전에 구성 상품 재고를 확인한다. |
+| 엑셀 출고 | B2C·B2B 모두 Bundle 상품코드를 입력할 수 있으며 최종 저장 시 구성 상품으로 전개한다. |
 
 ### Kit SKU로 실물화
 
@@ -63,3 +87,9 @@ Bundle Available
 - 동일 SKU 중복 구성
 - 순환 Bundle 구성
 - Kit 조립·해체 수량 불일치
+
+## 관련 문서
+
+- [엑셀 출고 신청](/outbound/excel-application)
+- [출고 신청·주문](/outbound/order)
+- [작업 생성·할당](/outbound/work-assignment)

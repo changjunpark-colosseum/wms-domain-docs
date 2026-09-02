@@ -9,6 +9,7 @@ description: Stock이 놓이는 창고 주소와 보관로케이션(STRG)·피�
 
 Location은 Stock이 놓이거나 작업 중 이동하는 구체적인 창고 주소다. 주소는 단순 문자열이 아니라 센터 안의 공간을 단계별로 좁혀 가는 계층으로 이해해야 한다.
 
+
 ```text
 Center
 └─ Zone
@@ -65,6 +66,8 @@ Zone은 같은 업무 목적을 가진 Location의 묶음이다.
 - 바닥·랙·선반 등 물리 유형
 - 허용 상품·화주
 - 최대 수량·중량·부피
+
+상품 체적과 Location Capacity를 비교하는 기준은 [체적·중량](/product/volume-weight)에서 설명한다.
 
 ## Location 생성
 
@@ -169,6 +172,7 @@ Location 삭제는 주소 문자열을 지우는 일이 아니다. Stock과 작�
 11. 한 센터에는 하나의 반품 Zone만 유지한다.
 12. 배송사 인계 Location은 CGKR이 요구하는 `depthLv4`까지 입력한다.
 13. 피킹로케이션(`PICK`)에 신규 적치·관리자 재고 추가·반품 양품화를 수행할 때는 `EA` UOM만 허용한다.
+
 
 ## Location은 수량이 아니다
 

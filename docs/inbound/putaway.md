@@ -11,6 +11,7 @@ description: 검수 완료 상품을 임시빈·STOW Zone에서 피킹로케이�
 
 입고 작업에서 수행하는 `STOW Zone 인계`는 임시빈 라벨을 `ZN-STOW-1` 같은 적치 대기 구역으로 넘기는 단계다. CGKR 화면에서는 Master Location이라고 부르지만 최종 피킹로케이션(`PICK`)·보관로케이션(`STRG`)에 재고를 안착시키는 적치와 구분한다.
 
+
 ## 적치 흐름
 
 <div class="flow-strip"><span>임시빈 라벨 스캔</span><i>→</i><span>상품·남은 수량 확인</span><i>→</i><span>피킹로케이션(PICK)·보관로케이션(STRG) 추천</span><i>→</i><span>도착 Location 스캔</span><i>→</i><span>수량·사진·체적 확인</span><i>→</i><span>적치 완료</span></div>
@@ -52,6 +53,7 @@ description: 검수 완료 상품을 임시빈·STOW Zone에서 피킹로케이�
 9. 모든 적치 대상과 예외가 종결된 뒤 적치 작업을 완료한다.
 10. 피킹로케이션(`PICK`)에는 `EA` UOM 재고만 적치한다.
 
+
 ## 예외
 
 - 임시빈 라벨 인식 실패
@@ -66,4 +68,5 @@ description: 검수 완료 상품을 임시빈·STOW Zone에서 피킹로케이�
 ## 관련 문서
 
 - [입고 작업](/inbound/work)
+- [체적·중량](/product/volume-weight)
 - [LPN](/inventory/lpn)
